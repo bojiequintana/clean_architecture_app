@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:lending_app/core/error/failure.dart';
 import 'package:lending_app/core/usecase/usecase.dart';
-import 'package:lending_app/features/auth/domain/entities/user.dart';
+import 'package:lending_app/core/common/entities/user.dart';
 import 'package:lending_app/features/auth/domain/repository/auth_repository.dart';
 
 class UserSignIn implements Usecase<User, UserSignInParams> {

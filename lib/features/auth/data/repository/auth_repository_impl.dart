@@ -2,7 +2,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:lending_app/core/error/exceptions.dart';
 import 'package:lending_app/core/error/failure.dart';
 import 'package:lending_app/features/auth/data/datasources/auth_datasource.dart';
-import 'package:lending_app/features/auth/domain/entities/user.dart';
+import 'package:lending_app/core/common/entities/user.dart';
 import 'package:lending_app/features/auth/domain/repository/auth_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
@@ -37,6 +37,19 @@ class AuthRepositoryImpl implements AuthRepository {
       return right(user);
     } on sb.AuthException catch (e) {
       return left(Failure(e.message));
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, User>> currentUser() async {
+    try {
+      final user = await authDatasource.getCurrentUserData();
+      if (user == null) {
+        return left(Failure('User not logged in!'));
+      }
+      return right(user);
     } on ServerException catch (e) {
       return left(Failure(e.message));
     }
