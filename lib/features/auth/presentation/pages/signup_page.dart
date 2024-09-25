@@ -9,7 +9,7 @@ import 'package:lending_app/features/auth/presentation/widgets/auth_button.dart'
 import 'package:lending_app/features/auth/presentation/widgets/auth_field.dart';
 
 class SignupPage extends StatefulWidget {
-  static route() => MaterialPageRoute(builder: (context) => const LoginPage());
+  static route() => MaterialPageRoute(builder: (context) => const SignupPage());
   const SignupPage({super.key});
 
   @override
@@ -99,7 +99,7 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context, SignupPage.route());
+                        Navigator.push(context, LoginPage.route());
                       },
                       child: RichText(
                         text: TextSpan(

@@ -4,6 +4,7 @@ import 'package:lending_app/core/common/cubit/app_user_cubit.dart';
 import 'package:lending_app/core/theme/theme.dart';
 import 'package:lending_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lending_app/features/auth/presentation/pages/login_page.dart';
+import 'package:lending_app/features/kyc/presentation/pages/dashboard.dart';
 import 'package:lending_app/init_dependencies.dart';
 
 void main() async {
@@ -35,6 +36,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: AppTheme.darkThemeMode,
       home: BlocSelector<AppUserCubit, AppUserState, bool>(
@@ -43,11 +45,7 @@ class _MyAppState extends State<MyApp> {
         },
         builder: (context, isLoggedIn) {
           if (isLoggedIn) {
-            return const Scaffold(
-              body: Center(
-                child: Text('Logged in!'),
-              ),
-            );
+            return const Dashboard();
           }
           return const LoginPage();
         },
