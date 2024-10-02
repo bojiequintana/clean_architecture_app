@@ -4,6 +4,7 @@ import 'package:lending_app/core/common/cubit/app_user_cubit.dart';
 import 'package:lending_app/core/theme/theme.dart';
 import 'package:lending_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lending_app/features/auth/presentation/pages/login_page.dart';
+import 'package:lending_app/features/blog/presentation/pages/blog_page.dart';
 import 'package:lending_app/features/kyc/presentation/pages/dashboard.dart';
 import 'package:lending_app/init_dependencies.dart';
 
@@ -45,7 +46,7 @@ class _MyAppState extends State<MyApp> {
         },
         builder: (context, isLoggedIn) {
           if (isLoggedIn) {
-            return const Dashboard();
+            return const BlogPage();
           }
           return const LoginPage();
         },

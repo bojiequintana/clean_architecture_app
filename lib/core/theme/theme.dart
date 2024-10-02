@@ -6,10 +6,14 @@ class AppTheme {
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(color: color, width: 3));
 
-  static final darkThemeMode = ThemeData.light().copyWith(
+  static final darkThemeMode = ThemeData.dark().copyWith(
       scaffoldBackgroundColor: AppPallete.backgroundColor,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppPallete.backgroundColor),
+      chipTheme: const ChipThemeData(
+        color: WidgetStatePropertyAll(AppPallete.backgroundColor),
+        side: BorderSide.none,
+      ),
       appBarTheme:
           const AppBarTheme(backgroundColor: AppPallete.backgroundColor),
       inputDecorationTheme: InputDecorationTheme(
