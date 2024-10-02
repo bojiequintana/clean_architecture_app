@@ -14,12 +14,13 @@ class BlogRepositoryImpl implements BlogRepository {
 
   BlogRepositoryImpl(this.blogRemoteDataSource);
   @override
-  Future<Either<Failure, Blog>> uploadBlog(
-      {required File image,
-      required String title,
-      required String content,
-      required String posterId,
-      required List<String> topics}) async {
+  Future<Either<Failure, Blog>> uploadBlog({
+    required File image,
+    required String title,
+    required String content,
+    required String posterId,
+    required List<String> topics,
+  }) async {
     try {
       BlogModel blogModel = BlogModel(
           id: const Uuid().v1(),
@@ -34,8 +35,8 @@ class BlogRepositoryImpl implements BlogRepository {
           image: image, blog: blogModel);
       blogModel = blogModel.copyWith(imageUrl: imageUrl);
 
-      await blogRemoteDataSource.uploadBlog(blogModel);
-      return right(blogModel);
+      final uploadedBlog = await blogRemoteDataSource.uploadBlog(blogModel);
+      return right(uploadedBlog);
     } on ServerException catch (e) {
       return Left(Failure(e.message));
     }

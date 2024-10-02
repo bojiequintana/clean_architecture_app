@@ -7,17 +7,20 @@ class AppTheme {
       borderSide: BorderSide(color: color, width: 3));
 
   static final darkThemeMode = ThemeData.dark().copyWith(
-      scaffoldBackgroundColor: AppPallete.backgroundColor,
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: AppPallete.backgroundColor),
-      chipTheme: const ChipThemeData(
-        color: WidgetStatePropertyAll(AppPallete.backgroundColor),
-        side: BorderSide.none,
-      ),
-      appBarTheme:
-          const AppBarTheme(backgroundColor: AppPallete.backgroundColor),
-      inputDecorationTheme: InputDecorationTheme(
-          contentPadding: const EdgeInsets.all(27),
-          enabledBorder: _border(),
-          focusedBorder: _border(AppPallete.gradient2)));
+    scaffoldBackgroundColor: AppPallete.backgroundColor,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: AppPallete.backgroundColor),
+    chipTheme: const ChipThemeData(
+      color: WidgetStatePropertyAll(AppPallete.backgroundColor),
+      side: BorderSide.none,
+    ),
+    appBarTheme: const AppBarTheme(backgroundColor: AppPallete.backgroundColor),
+    inputDecorationTheme: InputDecorationTheme(
+      contentPadding: const EdgeInsets.all(27),
+      border: _border(),
+      enabledBorder: _border(),
+      focusedBorder: _border(AppPallete.gradient2),
+      errorBorder: _border(AppPallete.errorColor),
+    ),
+  );
 }
