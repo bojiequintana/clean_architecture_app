@@ -17,3 +17,5 @@ final class BlogUpload extends BlogEvent {
       required this.image,
       required this.topics});
 }
+
+final class BlogGetAllBlogsEvent extends BlogEvent {}

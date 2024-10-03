@@ -12,6 +12,7 @@ import 'package:lending_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lending_app/features/blog/data/datasources/blog_remote_data_source.dart';
 import 'package:lending_app/features/blog/data/repositories/blog_repository_impl.dart';
 import 'package:lending_app/features/blog/domain/repositories/blog_repository.dart';
+import 'package:lending_app/features/blog/domain/usecases/get_all_blogs_usecase.dart';
 import 'package:lending_app/features/blog/domain/usecases/upload_blog_usecase.dart';
 import 'package:lending_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -93,10 +94,15 @@ void _initBlog() {
         serviceLocator(),
       ),
     )
+    ..registerFactory(
+      () => GetAllBlogsUsecase(
+        serviceLocator(),
+      ),
+    )
     //Bloc
     ..registerLazySingleton(
       () => BlogBloc(
-        serviceLocator(),
-      ),
+          uploadBlogUsecase: serviceLocator(),
+          getAllBlogUsecase: serviceLocator()),
     );
 }
