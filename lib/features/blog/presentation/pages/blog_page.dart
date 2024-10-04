@@ -72,6 +72,7 @@ class _BlogPageState extends State<BlogPage> {
           }
           if (state is BlogDisplaySuccess) {
             return ListView.builder(
+                padding: const EdgeInsets.only(bottom: 20),
                 itemCount: state.blogs.length,
                 itemBuilder: (context, index) {
                   final blog = state.blogs[index];

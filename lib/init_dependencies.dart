@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:lending_app/core/common/cubit/app_user_cubit.dart';
+import 'package:lending_app/core/network/connection_checker.dart';
 import 'package:lending_app/core/secrets/app_secrets.dart';
 import 'package:lending_app/features/auth/data/datasources/auth_datasource.dart';
 import 'package:lending_app/features/auth/data/repository/auth_repository_impl.dart';
@@ -24,7 +26,14 @@ Future<void> initDependencies() async {
   final supabase = await Supabase.initialize(
       url: AppSecrets.supabaseUrl, anonKey: AppSecrets.supabaseAnonKey);
   serviceLocator.registerLazySingleton(() => supabase.client);
+
+  serviceLocator.registerFactory(() => InternetConnection());
+
+  // core
   serviceLocator.registerLazySingleton(() => AppUserCubit());
+  serviceLocator.registerFactory<ConnectionChecker>(
+    () => ConnectionCheckerImpl(serviceLocator()),
+  );
 }
 
 void _initAuth() {
@@ -38,6 +47,7 @@ void _initAuth() {
     //Repository
     ..registerFactory<AuthRepository>(
       () => AuthRepositoryImpl(
+        serviceLocator(),
         serviceLocator(),
       ),
     )
